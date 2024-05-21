@@ -11,7 +11,7 @@ https://templatemo.com/tm-567-nomad-force
 -----------------------------------------*/
 :root {
   --white-color: #ffffff;
-  --primary-color: #ece4e4;
+  --primary-color: #170c0c;
   --section-bg-color:             #f9f9f9;
   --dark-color: #383636;
   --grey-color:                   #fcfeff;
@@ -107,10 +107,14 @@ p {
   font-size: var(--p-font-size);
   font-weight: var(--font-weight-light);
   letter-spacing: 0.5px;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .text-secondary-white-color {
   color: var(--text-secondary-white-color);
+  text-align: center;
 }
 
 a, 

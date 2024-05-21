@@ -14,7 +14,7 @@
     var slice = Array.prototype.slice; // save ref to original slice()
     var splice = Array.prototype.splice; // save ref to original slice()
 
-  var defaults = {
+  let defaults = {
       topSpacing: 0,
       bottomSpacing: 0,
       className: 'is-sticky',
@@ -63,7 +63,7 @@
           } else {
             newTop = s.topSpacing;
           }
-          if (s.currentTop != newTop) {
+          if (s.currentTop !== newTop) {
             var newWidth;
             if (s.getWidthFrom) {
                 newWidth = $(s.getWidthFrom).width() || null;
@@ -139,7 +139,7 @@
             stickyWrapper.css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
           }
 
-          if (stickyElement.css("float") == "right") {
+          if (stickyElement.css("float") === "right") {
             stickyElement.css({"float":"none"}).parent().css({"float":"right"});
           }
 
@@ -153,7 +153,7 @@
         });
       },
       update: scroller,
-      unstick: function(options) {
+      unstick: function() {
         return this.each(function() {
           var that = this;
           var unstickyElement = $(that);
@@ -166,7 +166,7 @@
                 removeIdx = i;
             }
           }
-          if(removeIdx != -1) {
+          if(removeIdx !== -1) {
             unstickyElement.unwrap();
             unstickyElement
               .css({
