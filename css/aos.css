@@ -3,7 +3,7 @@
 }
 
 [data-aos][data-aos][data-aos-delay="600"], body[data-aos-delay="600"] [data-aos] {
-    transition-delay: 0
+    transition-delay: 0s
 }
 
 [data-aos][data-aos][data-aos-delay="600"].aos-animate, body[data-aos-delay="600"] [data-aos].aos-animate {
@@ -11,7 +11,7 @@
 }
 
 [data-aos][data-aos][data-aos-delay="1200"], body[data-aos-delay="1200"] [data-aos] {
-    transition-delay: 0
+    transition-delay: 0s
 }
 
 [data-aos][data-aos][data-aos-delay="1200"].aos-animate, body[data-aos-delay="1200"] [data-aos].aos-animate {
