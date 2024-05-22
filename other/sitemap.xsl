@@ -7,55 +7,18 @@
     <xsl:template match="/">
         <html xmlns="http://www.w3.org/1999/xhtml">
             <head>
-                <title>XML Sitemap</title>
-                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-                <style type="text/css">body {
-                    font-family: Verdana, Arial, Helvetica, sans-serif;
-                    font-size: 12px;
-                }
-
-                #header, #footer {
-                    background-color: #f7f7f7;
-                    border: 1px solid #aaaaaa;
-                    border-right: none;
-                    border-left: none;
-                    padding: 5px 10px;
-                    margin: 10px 0;
-                    line-height: 1.7;
-                }
-
-                #footer {
-                    margin-top: 15px;
-                }
-
-                table {
-                    width: 100%;
-                }
-
-                th {
-                    text-align: left;
-                    border-bottom: 1px solid #aaaaaa;
-                    padding-bottom: 10px;
-                    padding-left: 5px;
-                }
-
-                tr.odd {
-                    background-color: #f7f7f7;
-                }
-
-                td {
-                    padding: 5px;
-                    margin: 0;
-                }</style>
+                <title>XML Sitemap for Domain www.moderatorin-katrin-neumann.de</title>
+                <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+                <link rel="stylesheet" type="text/css" href="../css/katrin.css"/>
             </head>
             <body>
                 <h1>XML Sitemap for www.moderatorin-katrin-neumann.de</h1>
-                <div id="header">
+                <div>
                     <p>This sitemap contains:
                         <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> Urls for the Domain www.moderatorin-katrin-neumann.de.
                     </p>
                 </div>
-                <div id="content">
+                <div>
                     <table cellspacing="0" cellpadding="0">
                         <thead>
                             <tr>
@@ -97,7 +60,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="footer">© Copyright 2024 Katrin Neumann</div>
+                <div >© Copyright 2024 Katrin Neumann</div>
             </body>
         </html>
     </xsl:template>
