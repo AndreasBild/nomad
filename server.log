@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/http/server.py", line 1329, in <module>
+    test(
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/http/server.py", line 1276, in test
+    with ServerClass(addr, HandlerClass) as httpd:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/http/server.py", line 1323, in server_bind
+    return super().server_bind()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/http/server.py", line 140, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/home/jules/.pyenv/versions/3.12.13/lib/python3.12/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /css/bootstrap.min.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /css/katrin.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /css/templatemo-nomad-force.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /css/magnific-popup.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /css/aos.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /images/Katrin-Neumann-Moderatorin.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /images/Instagram_logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /js/jquery.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /js/bootstrap.bundle.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /js/aos.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /js/jquery.sticky.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /js/custom.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:52:40] "GET /js/scrollspy.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /css/bootstrap.min.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /images/Katrin-Neumann-Moderatorin.jpg HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /css/magnific-popup.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /css/aos.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /js/jquery.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /css/templatemo-nomad-force.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /css/katrin.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /images/Instagram_logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /js/bootstrap.bundle.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /js/jquery.magnific-popup.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /js/aos.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /js/jquery.sticky.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /js/custom.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Mar/2026 13:53:43] "GET /js/scrollspy.min.js HTTP/1.1" 200 -
