@@ -41,8 +41,23 @@ button:focus-visible {
     outline-offset: 2px;
 }
 
+/* Navigation Alignment */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-link {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.2;
+}
+
 /* Social icons in nav */
 .navbar-nav .nav-link img {
-    vertical-align: -3px;
-    margin-left: 4px;
+    width: 20px;
+    height: 20px;
+    margin-left: 6px;
+    vertical-align: middle;
+    flex-shrink: 0;
 }
