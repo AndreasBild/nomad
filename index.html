@@ -44,15 +44,93 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Katrin Neumann",
-      "jobTitle": "Moderatorin, Journalistin, Medientrainerin",
-      "url": "https://www.moderatorin-katrin-neumann.de",
-      "image": "https://www.moderatorin-katrin-neumann.de/images/Katrin-Neumann-Moderatorin.webp",
-      "sameAs": [
-        "https://www.instagram.com/katrin__neumann/?hl=de"
-      ],
-      "description": "Freie Moderatorin für Politik, Wirtschaft, Soziales, Digitales, Kultur, Umwelt und Gesundheit. Freie Journalistin, rbb Fernsehen."
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://www.moderatorin-katrin-neumann.de/#website",
+          "url": "https://www.moderatorin-katrin-neumann.de",
+          "name": "Katrin Neumann | Moderatorin & Journalistin",
+          "description": "Offizielle Website von Katrin Neumann - Moderatorin, Journalistin und Medientrainerin in Berlin.",
+          "inLanguage": "de-DE"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.moderatorin-katrin-neumann.de/#person",
+          "name": "Katrin Neumann",
+          "jobTitle": "Freie Moderatorin, Journalistin & Medientrainerin",
+          "url": "https://www.moderatorin-katrin-neumann.de",
+          "image": "https://www.moderatorin-katrin-neumann.de/images/Katrin-Neumann-Moderatorin.webp",
+          "email": "mailto:info@moderatorin-katrin-neumann.de",
+          "sameAs": [
+            "https://www.instagram.com/katrin__neumann/?hl=de"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Berlin",
+            "addressCountry": "DE"
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "rbb Fernsehen",
+            "url": "https://www.rbb-online.de"
+          },
+          "knowsAbout": [
+            "Politik",
+            "Wirtschaft",
+            "Soziales",
+            "Digitalisierung",
+            "Kultur",
+            "Umwelt & Nachhaltigkeit",
+            "Gesundheit",
+            "Journalismus",
+            "Medientraining",
+            "Event- und Kongressmoderation",
+            "Podiumsdiskussionen"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Moderations- & Mediendienstleistungen",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "TV- und Magazinsendungen"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Kongresse & Fachtagungen"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Podiums- und Diskussionsrunden"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Abend- & Galaveranstaltungen"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Medientraining"
+                }
+              }
+            ]
+          },
+          "description": "Freie Moderatorin für Politik, Wirtschaft, Soziales, Digitales, Kultur, Umwelt und Gesundheit. Freie Journalistin beim rbb Fernsehen."
+        }
+      ]
     }
     </script>
 </head>

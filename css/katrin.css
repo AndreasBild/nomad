@@ -4,6 +4,9 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Ensure smooth image display and responsive hero layout */
@@ -21,6 +24,13 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Performance: Off-screen content rendering optimization */
+#kontakt,
+.news-detail {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
 }
 
 /* Accessible focus styles */
