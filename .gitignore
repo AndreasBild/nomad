@@ -1,4 +1,9 @@
-.idea/
+# IntelliJ IDEA shared configs
+.idea/*
+!.idea/runConfigurations/
+!.idea/runConfigurations/*.xml
+
+# User-specific & OS files
 .DS_Store
 *.iml
 .junie/
