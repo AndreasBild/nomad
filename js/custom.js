@@ -61,4 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 4. Register Progressive Web App Service Worker
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').catch((err) => {
+                // Silently handle registration errors in unsupported/restricted environments
+                console.debug('ServiceWorker registration skipped:', err);
+            });
+        });
+    }
 });

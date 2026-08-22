@@ -27,6 +27,7 @@ html {
 }
 
 /* Performance: Off-screen content rendering optimization */
+#about,
 #kontakt,
 .news-detail {
     content-visibility: auto;

@@ -37,12 +37,14 @@ Use this skill when you need to start the local web server, test changes, or ver
        'http://localhost:8000/js/bootstrap.bundle.min.js',
        'http://localhost:8000/js/aos.js',
        'http://localhost:8000/js/custom.js',
+       'http://localhost:8000/sw.js',
        'http://localhost:8000/images/Katrin-Neumann-Moderatorin.webp',
+       'http://localhost:8000/images/Katrin-Neumann-Moderatorin-768.webp',
        'http://localhost:8000/images/Instagram_logo.png'
    ]
    for u in urls:
        resp = urllib.request.urlopen(u)
        assert resp.status == 200, f'Failed: {u}'
-   print('All 16 assets & pages verified successfully with HTTP 200!')
+   print('All 18 assets & pages verified successfully with HTTP 200!')
    "
    ```

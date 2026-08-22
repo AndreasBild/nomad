@@ -146,14 +146,17 @@
             </p>
         </div>
         <div class="bannerImageWrapper">
-            <img class="custom-bannerImage"
-                 alt="Katrin Neumann - Moderatorin, Journalistin und Medientrainerin"
-                 title="Katrin Neumann | Moderatorin | Journalistin"
-                 src="images/Katrin-Neumann-Moderatorin.webp"
-                 width="1920"
-                 height="1083"
-                 fetchpriority="high"
-                 decoding="async">
+            <picture>
+                <source media="(max-width: 768px)" srcset="images/Katrin-Neumann-Moderatorin-768.webp" type="image/webp" width="768" height="433">
+                <img class="custom-bannerImage"
+                     alt="Katrin Neumann - Moderatorin, Journalistin und Medientrainerin"
+                     title="Katrin Neumann | Moderatorin | Journalistin"
+                     src="images/Katrin-Neumann-Moderatorin.webp"
+                     width="1920"
+                     height="1083"
+                     fetchpriority="high"
+                     decoding="async">
+            </picture>
         </div>
         <div class="overlay"></div>
     </section>
