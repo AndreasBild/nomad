@@ -81,7 +81,9 @@ jobs:
               'http://localhost:8000/js/bootstrap.bundle.min.js',
               'http://localhost:8000/js/aos.js',
               'http://localhost:8000/js/custom.js',
+              'http://localhost:8000/sw.js',
               'http://localhost:8000/images/Katrin-Neumann-Moderatorin.webp',
+              'http://localhost:8000/images/Katrin-Neumann-Moderatorin-768.webp',
               'http://localhost:8000/images/Instagram_logo.png'
           ]
           for u in urls:
