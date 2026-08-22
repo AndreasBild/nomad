@@ -40,13 +40,12 @@ Use this skill when you need to start the local web server, test changes, or ver
        'http://localhost:8000/sw.js',
        'http://localhost:8000/images/Katrin-Neumann-Moderatorin.webp',
        'http://localhost:8000/images/Katrin-Neumann-Moderatorin-768.webp',
-       'http://localhost:8000/images/Instagram_logo.png',
        'http://localhost:8000/llms.txt',
        'http://localhost:8000/llms-full.txt'
    ]
    for u in urls:
        resp = urllib.request.urlopen(u)
        assert resp.status == 200, f'Failed: {u}'
-   print('All 20 assets & pages verified successfully with HTTP 200!')
+   print('All 19 assets & pages verified successfully with HTTP 200!')
    "
    ```

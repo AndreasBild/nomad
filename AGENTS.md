@@ -40,10 +40,13 @@ nomad/
 ├── index.html              # Main landing page (Hero, About, Moderation, Kontakt)
 ├── impressum.html          # Legal Notice (Impressum - § 18 Abs. 2 MStV)
 ├── datenschutz.html        # Privacy Policy (DSGVO / GDPR compliant)
-├── robots.txt              # Search engine crawler directives (Root level)
-├── sitemap.xml             # XML Sitemap with canonical URLs (Root level)
+├── robots.txt              # Search engine & AI crawler directives
+├── sitemap.xml             # XML Sitemap with canonical URLs
 ├── sitemap.xsl             # XSL stylesheet for human-readable sitemap
+├── llms.txt                # AI search standard summary (GEO / LLMO)
+├── llms-full.txt           # Comprehensive AI profile documentation
 ├── site.webmanifest        # PWA Web Manifest
+├── sw.js                   # PWA Service Worker for offline caching
 ├── css/
 │   ├── bootstrap.min.css   # Bootstrap 5 Core CSS
 │   ├── aos.css             # AOS animation styles
@@ -52,11 +55,12 @@ nomad/
 ├── js/
 │   ├── bootstrap.bundle.min.js # Bootstrap 5 JS (Collapse, Navbar)
 │   ├── aos.js              # AOS scroll animations
-│   └── custom.js           # Vanilla JS interactive logic (menu collapse, smooth scroll)
+│   └── custom.js           # Vanilla JS interactive logic & PWA registration
 ├── images/
-│   ├── Katrin-Neumann-Moderatorin.webp  # Hero Banner Image (1920x1083)
-│   └── Instagram_logo.png               # Instagram icon (26x26)
+│   ├── Katrin-Neumann-Moderatorin.webp     # Desktop Hero Banner Image (1920x1083)
+│   └── Katrin-Neumann-Moderatorin-768.webp # Mobile Hero Banner Image (768x433)
 ├── .agents/                # Antigravity & Jules rules and skills
+├── .github/workflows/ci.yml# Automated CI/CD validation workflow
 ├── start-server.sh         # Local Python HTTP server launcher
 ├── ARCHITECTURE.md         # Detailed architectural documentation
 └── README.md               # Quickstart and overview

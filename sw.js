@@ -3,7 +3,7 @@
  * Provides offline caching and instant page loads
  */
 
-const CACHE_NAME = 'nomad-v1';
+const CACHE_NAME = 'nomad-v2';
 const PRECACHE_ASSETS = [
     '/',
     '/index.html',
@@ -19,7 +19,6 @@ const PRECACHE_ASSETS = [
     '/js/custom.js',
     '/images/Katrin-Neumann-Moderatorin.webp',
     '/images/Katrin-Neumann-Moderatorin-768.webp',
-    '/images/Instagram_logo.png',
     '/llms.txt',
     '/llms-full.txt',
     '/favicon.ico',
