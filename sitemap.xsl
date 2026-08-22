@@ -9,27 +9,33 @@
             <head>
                 <title>XML Sitemap for Domain www.moderatorin-katrin-neumann.de</title>
                 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-                <link rel="stylesheet" type="text/css" href="../css/katrin.css"/>
+                <style>
+                    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 2rem; color: #333; max-width: 960px; margin: 0 auto; }
+                    h1 { font-size: 1.75rem; color: #170c0c; }
+                    table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+                    th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+                    th { background-color: #f8f9fa; font-weight: 600; }
+                    tr.odd { background-color: #fcfcfc; }
+                    a { color: #0d6efd; text-decoration: none; }
+                    a:hover { text-decoration: underline; }
+                    .footer { margin-top: 2rem; font-size: 0.85rem; color: #888; }
+                </style>
             </head>
             <body>
-                <h1>XML Sitemap for www.moderatorin-katrin-neumann.de</h1>
+                <h1>XML Sitemap für www.moderatorin-katrin-neumann.de</h1>
                 <div>
-                    <p>This sitemap contains:
-                        <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> Urls for the Domain www.moderatorin-katrin-neumann.de.
-                    </p>
+                    <p>Diese Sitemap enthält <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> URLs.</p>
                 </div>
                 <div>
-                    <table cellspacing="0" cellpadding="0">
+                    <table>
                         <thead>
                             <tr>
-                                <th>Location</th>
-                                <th>Priority</th>
-                                <th>Change Frequency</th>
-                                <th>Last Modified (GMT)</th>
+                                <th>URL</th>
+                                <th>Priorität</th>
+                                <th>Änderungsintervall</th>
+                                <th>Zuletzt geändert</th>
                             </tr>
                         </thead>
-                        <xsl:variable name="lower" select="'abcdefghijklmnopqrstuvwxyz'"/>
-                        <xsl:variable name="upper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
                         <tbody>
                             <xsl:for-each select="sitemap:urlset/sitemap:url">
                                 <tr>
@@ -48,19 +54,17 @@
                                         <xsl:value-of select="concat(sitemap:priority*100,'%')"/>
                                     </td>
                                     <td>
-                                        <xsl:value-of
-                                                select="concat(translate(substring(sitemap:changefreq, 1, 1),concat($lower, $upper),concat($upper, $lower)),substring(sitemap:changefreq, 2))"/>
+                                        <xsl:value-of select="sitemap:changefreq"/>
                                     </td>
                                     <td>
-                                        <xsl:value-of
-                                                select="concat(substring(sitemap:lastmod, 0, 11),concat(' ', substring(sitemap:lastmod, 12, 5)))"/>
+                                        <xsl:value-of select="sitemap:lastmod"/>
                                     </td>
                                 </tr>
                             </xsl:for-each>
                         </tbody>
                     </table>
                 </div>
-                <div >© Copyright 2024 Katrin Neumann</div>
+                <div class="footer">© Katrin Neumann</div>
             </body>
         </html>
     </xsl:template>
