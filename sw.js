@@ -19,7 +19,6 @@ const PRECACHE_ASSETS = [
     '/js/custom.js',
     '/images/Katrin-Neumann-Moderatorin.webp',
     '/images/Katrin-Neumann-Moderatorin-768.webp',
-    '/images/Instagram_logo.png',
     '/llms.txt',
     '/llms-full.txt',
     '/favicon.ico',
