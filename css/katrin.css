@@ -53,11 +53,16 @@ button:focus-visible {
     line-height: 1.2;
 }
 
-/* Social icons in nav */
-.navbar-nav .nav-link img {
+/* Social icons in nav & content */
+.instagram-icon {
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, fill 0.2s ease;
+}
+
+.navbar-nav .nav-link .instagram-icon {
     width: 20px;
     height: 20px;
     margin-left: 6px;
-    vertical-align: middle;
-    flex-shrink: 0;
 }

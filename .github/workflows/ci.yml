@@ -84,7 +84,9 @@ jobs:
               'http://localhost:8000/sw.js',
               'http://localhost:8000/images/Katrin-Neumann-Moderatorin.webp',
               'http://localhost:8000/images/Katrin-Neumann-Moderatorin-768.webp',
-              'http://localhost:8000/images/Instagram_logo.png'
+              'http://localhost:8000/images/Instagram_logo.png',
+              'http://localhost:8000/llms.txt',
+              'http://localhost:8000/llms-full.txt'
           ]
           for u in urls:
               resp = urllib.request.urlopen(u)
