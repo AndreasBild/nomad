@@ -93,25 +93,16 @@ nomad/
 ```
 In IntelliJ IDEA: Run configuration **"Start Dev Server"** is available in the top toolbar.
 
-### 2. Automated Verification Script
-Before pushing changes or creating a PR, verify all endpoints:
+### 2. Automated Test & Validation Suite
+Before pushing changes or creating a PR, run the comprehensive validation suite:
 ```bash
-python3 -c "
-import urllib.request
-urls = [
-    'http://localhost:8000/',
-    'http://localhost:8000/index.html',
-    'http://localhost:8000/impressum.html',
-    'http://localhost:8000/datenschutz.html',
-    'http://localhost:8000/robots.txt',
-    'http://localhost:8000/sitemap.xml',
-    'http://localhost:8000/css/katrin.css',
-    'http://localhost:8000/js/custom.js'
-]
-for u in urls:
-    urllib.request.urlopen(u)
-print('All endpoints verified!')
-"
+./test.sh
+```
+This executes `scripts/validate.py`, which validates XML schemas, robots.txt, Schema.org JSON-LD, internal anchors, media assets, and verifies HTTP 200 responses across all 25 endpoints.
+
+Optional: Enable Git pre-commit hooks to automatically validate on commit:
+```bash
+git config core.hooksPath .githooks
 ```
 
 ### 3. Git Workflow
