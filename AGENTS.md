@@ -112,6 +112,13 @@ Optional: Enable Git pre-commit hooks to automatically validate on commit:
 git config core.hooksPath .githooks
 ```
 
-### 3. Git Workflow
-- Branch naming: `feature/<feature-name>`, `fix/<bug-description>`
-- Commit messages: Imperative mood, clear bullet points describing non-obvious rationale.
+### 3. Git & Pull Request Automation Workflow
+- **Branching:** Never push directly to `master`. Always branch from latest `master`:
+  - `feature/<feature-name>` for new features or sections.
+  - `fix/<bug-description>` for fixes or layout adjustments.
+  - `chore/<task-name>` for maintenance, dependencies, or doc updates.
+- **Pre-PR Validation:** Execute `./test.sh` before committing to verify schema, a11y, and asset health.
+- **Commit Messages:** Imperative mood with descriptive bullet points (`feat: ...`, `fix: ...`, `chore: ...`).
+- **Automated PR Creation:** Push branch to remote (`git push -u origin <branch>`) and immediately open a Pull Request against `master` using `.github/pull_request_template.md`.
+- **CI / Jules Automated Gate:** CI pipeline (`.github/workflows/ci.yml`) validates the PR automatically before merge to `master` (which triggers automated deployment via `deploy.yml`).
+
