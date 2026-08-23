@@ -31,3 +31,16 @@ Anschließend im Browser aufrufen:
    - Hero-Bannerbild mit `fetchpriority="high"`, `width="1920"` und `height="1083"` gegen Cumulative Layout Shifts (CLS) optimiert.
    - Separate Navigations-Anker (`#about`, `#moderation`, `#kontakt`) für präzise Sprungziele.
    - Syntax- und HTML-Fehler (fehlende Quotes, ungenutzte leere Tags) bereinigt.
+
+---
+
+## 🚢 Automatisches Deployment (webhoster.de)
+
+Die Website wird bei jedem Push/Merge auf den `master`-Branch automatisch per GitHub Actions auf den Webspace bei webhoster.de übertragen (`.github/workflows/deploy.yml`).
+
+### Erforderliche GitHub Secrets (unter `Settings > Secrets and variables > Actions`):
+- `FTP_SERVER`: FTP-Serveradresse / Hostname (z. B. `ftp.moderatorin-katrin-neumann.de` oder Server-IP)
+- `FTP_USERNAME`: FTP-Benutzername
+- `FTP_PASSWORD`: FTP-Passwort
+- `FTP_SERVER_DIR`: *(Optional)* Zielordner auf dem Webspace (Standard: `/httpdocs/`)
+

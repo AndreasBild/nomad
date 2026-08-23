@@ -1,0 +1,62 @@
+name: 🚀 HTML Deployment
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: 🧪 Run Quality & Health Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 🔍 Execute Validation Suite
+        run: |
+          chmod +x test.sh scripts/validate.py
+          ./test.sh
+
+  deploy:
+    name: 🎉 Deploy to webhoster.de
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Required by FTP-Deploy-Action to sync only modified files
+
+      - name: 📂 Transfer files via FTP / FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR || '/httpdocs/' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.githooks/**
+            **/.agents/**
+            scripts/**
+            test.sh
+            start-server.sh
+            README.md
+            ARCHITECTURE.md
+            AGENTS.md
+            GEMINI.md
+            .idea/**
+            *.iml

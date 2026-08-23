@@ -60,7 +60,14 @@ nomad/
 │   ├── Katrin-Neumann-Moderatorin.webp     # Desktop Hero Banner Image (1920x1083)
 │   └── Katrin-Neumann-Moderatorin-768.webp # Mobile Hero Banner Image (768x433)
 ├── .agents/                # Antigravity & Jules rules and skills
-├── .github/workflows/ci.yml# Automated CI/CD validation workflow
+├── .github/
+│   ├── workflows/
+│   │   ├── ci.yml          # Automated CI/CD validation workflow
+│   │   └── deploy.yml      # Automated FTP/FTPS deployment to webhoster.de
+│   └── pull_request_template.md
+├── scripts/
+│   └── validate.py         # Comprehensive validation script
+├── test.sh                 # Local test runner script
 ├── start-server.sh         # Local Python HTTP server launcher
 ├── ARCHITECTURE.md         # Detailed architectural documentation
 └── README.md               # Quickstart and overview
