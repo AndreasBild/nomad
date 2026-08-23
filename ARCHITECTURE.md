@@ -83,5 +83,7 @@ CSS is loaded in strict order to avoid specificity conflicts:
 ## 5. Developer & IDE Integration (IntelliJ IDEA & Antigravity / Jules)
 
 - **IntelliJ IDEA Run Configuration:** `.idea/runConfigurations/Start_Dev_Server.xml` enables 1-click startup in the IDE.
-- **Antigravity & Jules Rules:** `.agents/rules/` and `AGENTS.md` enforce coding conventions and verify asset integrity during agent tasks.
+- **Antigravity & Jules Rules:** `.agents/rules/` and `AGENTS.md` enforce coding conventions, asset integrity, and the automated branch -> validate -> commit -> push -> PR workflow.
+- **Automated Pull Request Workflow:** Changes are pushed on dedicated feature/fix branches with automated PR creation against `master`, triggering CI quality checks prior to deployment.
 - **Local Dev Server:** Shell script `./start-server.sh` works out-of-the-box on macOS and Linux without external dependencies.
+
