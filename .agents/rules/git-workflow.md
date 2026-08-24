@@ -1,12 +1,12 @@
 ---
-description: Git branching, commit conventions, automated PR creation, and CI/CD validation protocol for AI agents (Antigravity & Jules)
+description: Git branching protocol, commit conventions, automated PR creation via gh CLI, and CI/CD validation protocol
 trigger: always_on
 ---
 
 # Git & Pull Request Automation Rules
 
 1. **Dedicated Branching Protocol:**
-   - Never commit or push directly to `master`.
+   - **Never commit directly to `master`.**
    - Always create and switch to a descriptive branch from latest `master` before making changes:
      - `feature/<short-description>`: New features, content additions, or major styling changes.
      - `fix/<short-description>`: Bugfixes, layout corrections, broken links.
@@ -23,13 +23,14 @@ trigger: always_on
    - Use clear, imperative commit messages: `feat: ...`, `fix: ...`, `chore: ...`, `docs: ...`.
    - Provide concise bullet points detailing non-obvious rationale and verified changes.
 
-4. **Automated Remote Push & PR Creation:**
-   - After local verification and commit, push the branch to the remote repository:
+4. **Autonomous Remote Push & PR Creation:**
+   - Push branch to remote:
      ```bash
      git push -u origin <branch-name>
      ```
-   - Automatically initiate and open a Pull Request against `master`.
-   - Populate the PR body following `.github/pull_request_template.md`:
-     - Concise summary of changes.
-     - Core Web Vitals & Technical Quality Checklist (verify all relevant checkboxes).
-   - Let GitHub Actions CI (`.github/workflows/ci.yml`) run and validate the PR.
+   - Create Pull Request autonomously using GitHub CLI:
+     ```bash
+     gh pr create --base master --head <branch-name> --title "<title>" --body "<body>"
+     ```
+   - Populate the PR body following `.github/pull_request_template.md`.
+   - Automated CI (`.github/workflows/ci.yml`) runs on PR; merge triggers automated production deployment (`.github/workflows/deploy.yml`).

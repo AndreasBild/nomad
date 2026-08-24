@@ -1,124 +1,95 @@
-# Nomad Project - AI Agent & Jules Context Guide
+# Agent Instructions & Project Governance (Nomad / Katrin Neumann)
 
-This document defines the architecture, conventions, and workflows for AI agents (Antigravity, Jules, and other AI pair programmers) working on the **Nomad (Katrin Neumann)** repository.
-
----
-
-## 📌 Project Overview
-
-- **Owner/Brand:** Katrin Neumann – Freie Moderatorin, Journalistin & Medientrainerin (Berlin)
-- **Domain:** [https://www.moderatorin-katrin-neumann.de](https://www.moderatorin-katrin-neumann.de)
-- **Type:** Ultra-fast, responsive static web presence.
+## Role and Persona
+You are an expert **Principal Frontend & Web Performance Systems Engineer** specializing in modern Vanilla HTML5, CSS3, ES6+ JavaScript, Core Web Vitals optimization, Schema.org JSON-LD structured data, and high-performance zero-overhead static web architectures. Your implementations must be production-ready, strictly deterministic, accessible (WCAG AA), SEO/GEO-optimized, and resilient.
 
 ---
 
-## 🛠️ Technology Stack & Constraints
+## 1. Core Architecture & Standards
 
-1. **HTML5:** Semantic markup, valid schema, German language (`<html lang="de">`), valid metadata and Open Graph tags.
-2. **CSS3:**
-   - Framework: Bootstrap 5 (`css/bootstrap.min.css`)
-   - Animation: AOS (`css/aos.css`)
-   - Custom Theme: `css/templatemo-nomad-force.css`
-   - Custom Overrides: `css/katrin.css` (keep minimal, no Bootstrap duplication).
-3. **JavaScript:**
-   - **Pure Vanilla JS only** (`js/custom.js`).
-   - **NO jQuery** or legacy plugins (Magnific Popup, jQuery Sticky, Scrollspy plugin are prohibited).
-   - Scripts loaded with `defer` at the bottom of the page:
-     ```html
-     <script src="js/bootstrap.bundle.min.js" defer></script>
-     <script src="js/aos.js" defer></script>
-     <script src="js/custom.js" defer></script>
-     ```
-4. **Structured Data:** JSON-LD (`Schema.org` `Person` on index, `BreadcrumbList` on subpages).
+### 1.1 Technology Constraints & Zero-Bloat Principle
+* **HTML5:** Semantic HTML5 markup, German language specification (`<html lang="de">`), valid metadata, Open Graph (`og:*`), and Twitter Cards.
+* **CSS3:**
+  - Base framework: Bootstrap 5 (`css/bootstrap.min.css`).
+  - Animations: AOS (`css/aos.css`).
+  - Theme styling: `css/templatemo-nomad-force.css`.
+  - Custom overrides: `css/katrin.css` (minimal, strictly no duplicate Bootstrap classes or reset rules).
+* **JavaScript:**
+  - **Pure Vanilla JS only (`js/custom.js`, `sw.js`):** Strictly **NO jQuery** or legacy plugins (`jquery.sticky.js`, `magnific-popup.js`, `scrollspy.js` are prohibited).
+  - Scripts loaded with `defer` at the bottom of the body.
+* **Structured Data & SEO:** Valid Schema.org JSON-LD (`@graph` / `Person` on `index.html`, `BreadcrumbList` on subpages).
+* **PWA & Offline:** Service Worker (`sw.js`) with cache-first strategy for static assets and web app manifest (`site.webmanifest`).
 
----
-
-## 📂 Directory Structure
-
-```
-nomad/
-├── index.html              # Main landing page (Hero, About, Moderation, Kontakt)
-├── impressum.html          # Legal Notice (Impressum - § 18 Abs. 2 MStV)
-├── datenschutz.html        # Privacy Policy (DSGVO / GDPR compliant)
-├── robots.txt              # Search engine & AI crawler directives
-├── sitemap.xml             # XML Sitemap with canonical URLs
-├── sitemap.xsl             # XSL stylesheet for human-readable sitemap
-├── llms.txt                # AI search standard summary (GEO / LLMO)
-├── llms-full.txt           # Comprehensive AI profile documentation
-├── site.webmanifest        # PWA Web Manifest
-├── sw.js                   # PWA Service Worker for offline caching
-├── css/
-│   ├── bootstrap.min.css   # Bootstrap 5 Core CSS
-│   ├── aos.css             # AOS animation styles
-│   ├── templatemo-nomad-force.css  # Nomad Force theme styling
-│   └── katrin.css          # Custom enhancements & overrides
-├── js/
-│   ├── bootstrap.bundle.min.js # Bootstrap 5 JS (Collapse, Navbar)
-│   ├── aos.js              # AOS scroll animations
-│   └── custom.js           # Vanilla JS interactive logic & PWA registration
-├── images/
-│   ├── Katrin-Neumann-Moderatorin.webp     # Desktop Hero Banner Image (1920x1083)
-│   └── Katrin-Neumann-Moderatorin-768.webp # Mobile Hero Banner Image (768x433)
-├── .agents/                # Antigravity & Jules rules and skills
-├── .github/
-│   ├── workflows/
-│   │   ├── ci.yml          # Automated CI/CD validation workflow
-│   │   └── deploy.yml      # Automated FTP/FTPS deployment to webhoster.de
-│   └── pull_request_template.md
-├── scripts/
-│   └── validate.py         # Comprehensive validation script
-├── test.sh                 # Local test runner script
-├── start-server.sh         # Local Python HTTP server launcher
-├── ARCHITECTURE.md         # Detailed architectural documentation
-└── README.md               # Quickstart and overview
-```
+### 1.2 Core Web Vitals & Asset Guidelines
+* **LCP (Largest Contentful Paint):**
+  - Desktop banner: `images/Katrin-Neumann-Moderatorin.webp` (1920x1083).
+  - Mobile banner: `images/Katrin-Neumann-Moderatorin-768.webp` (768x433).
+  - Always include `fetchpriority="high"` and `decoding="async"` on hero images.
+* **CLS (Cumulative Layout Shift):**
+  - Explicit `width` and `height` attributes on all `<img>` elements.
+  - Aspect-ratio CSS wrappers for dynamic media containers.
+* **Accessibility (a11y) & Legal Compliance:**
+  - WCAG 2.1 AA conformance: descriptive `alt`, `aria-label`, and `title` tags.
+  - External links must include `target="_blank" rel="noopener noreferrer"`.
+  - Full compliance with DSGVO / GDPR (`datenschutz.html`) and § 18 Abs. 2 MStV (`impressum.html`).
 
 ---
 
-## ⚡ Performance & Core Web Vitals Rules
+## 2. The 6-Stage Development Lifecycle
 
-1. **Images (LCP & CLS):**
-   - Always specify explicit `width` and `height` attributes on `<img>` tags.
-   - The hero banner in `index.html` must include `fetchpriority="high"` and `decoding="async"`.
-   - Prefer modern web formats (`.webp`).
-2. **Navigation Anchors:**
-   - Section anchors must match navigation targets: `#hero`, `#about`, `#moderation`, `#kontakt`.
-   - Smooth scrolling is handled via native CSS `scroll-behavior: smooth`, `scroll-padding-top: 80px`, and fallback in `js/custom.js`.
-3. **Accessibility (a11y):**
-   - All interactive elements and links must have descriptive `aria-label` or `title` attributes.
-   - External links must include `target="_blank" rel="noopener noreferrer"`.
-   - Avoid empty container tags (`<strong></strong>`, `<b></b>`).
+Every task executed by Antigravity, Jules, or human engineers MUST follow this structured lifecycle:
+
+```mermaid
+graph TD
+    S1[1. Analysis & Context] --> S2[2. Architecture & Design]
+    S2 --> S3[3. Branch Isolation]
+    S3 --> S4[4. Implementation & Standards]
+    S4 --> S5[5. Quality Gate & Local Validation]
+    S5 --> S6[6. Automated PR & Review Gate]
+```
+
+### Stufe 1: Analyse & Kontext-Erfassung (Analysis & Context)
+* Ingest DOM structure, CSS inheritance, JSON-LD schemas, and existing assets.
+* Identify affected navigation targets (`#hero`, `#about`, `#moderation`, `#kontakt`), canonical tags, or legal subpages.
+
+### Stufe 2: Architektur- & Schnittstellen-Design (Architecture & Design)
+* Verify changes adhere strictly to pure Vanilla JS (ES6+) and Bootstrap 5 without external dependencies.
+* Ensure CSS additions reside exclusively in `css/katrin.css` respecting cascade specificity.
+* Plan SEO, Open Graph, and Schema.org metadata updates.
+
+### Stufe 3: Branch-Isolation (Branch Isolation)
+* **Never commit directly to `master`.**
+* Create and switch to a descriptive branch from latest `master`:
+  - `feature/<short-description>` for new sections, features, or content.
+  - `fix/<short-description>` for bugfixes, broken anchors, or layout adjustments.
+  - `chore/<short-description>` for maintenance, CI/CD, agent configs, or dependencies.
+
+### Stufe 4: Standardkonforme Implementierung (Implementation & Standards)
+* Implement clean, semantic HTML5 and Vanilla JS logic.
+* Ensure all image tags specify explicit dimensions and modern formats (`.webp`).
+* Update `sitemap.xml` with current `<lastmod>` timestamp whenever pages change.
+
+### Stufe 5: Quality Gate & Lokale Verifikation (Quality Gate & Verification)
+* Execute the complete automated validation suite locally:
+  ```bash
+  ./test.sh
+  ```
+  *(Runs `scripts/validate.py`, verifying XML sitemaps, robots.txt, JSON-LD schema parsing, internal anchors, static assets, and HTTP 200 across all 25 endpoints).*
+* Ensure **0 errors** before proceeding.
+
+### Stufe 6: Pull Request & Automatisierter Review (PR & Review Gate)
+* Commit changes using clear imperative messages: `feat: ...`, `fix: ...`, `chore: ...`.
+* Push branch to remote: `git push -u origin <branch-name>`.
+* Create Pull Request autonomously using GitHub CLI:
+  ```bash
+  gh pr create --base master --head <branch-name> --title "<title>" --body "<body>"
+  ```
+* Fill the PR body adhering to `.github/pull_request_template.md`.
+* Automated GitHub Actions CI (`.github/workflows/ci.yml`) validates the PR; merge to `master` triggers automatic FTP deployment to webhoster.de (`.github/workflows/deploy.yml`).
 
 ---
 
-## 🔄 Development & Local Testing Workflow
+## 3. Execution & Token Efficiency Rules
 
-### 1. Starting Local Server
-```bash
-./start-server.sh
-# Server starts at http://localhost:8000
-```
-In IntelliJ IDEA: Run configuration **"Start Dev Server"** is available in the top toolbar.
-
-### 2. Automated Test & Validation Suite
-Before pushing changes or creating a PR, run the comprehensive validation suite:
-```bash
-./test.sh
-```
-This executes `scripts/validate.py`, which validates XML schemas, robots.txt, Schema.org JSON-LD, internal anchors, media assets, and verifies HTTP 200 responses across all 25 endpoints.
-
-Optional: Enable Git pre-commit hooks to automatically validate on commit:
-```bash
-git config core.hooksPath .githooks
-```
-
-### 3. Git & Pull Request Automation Workflow
-- **Branching:** Never push directly to `master`. Always branch from latest `master`:
-  - `feature/<feature-name>` for new features or sections.
-  - `fix/<bug-description>` for fixes or layout adjustments.
-  - `chore/<task-name>` for maintenance, dependencies, or doc updates.
-- **Pre-PR Validation:** Execute `./test.sh` before committing to verify schema, a11y, and asset health.
-- **Commit Messages:** Imperative mood with descriptive bullet points (`feat: ...`, `fix: ...`, `chore: ...`).
-- **Automated PR Creation:** Push branch to remote (`git push -u origin <branch>`) and immediately open a Pull Request against `master` using `.github/pull_request_template.md`.
-- **CI / Jules Automated Gate:** CI pipeline (`.github/workflows/ci.yml`) validates the PR automatically before merge to `master` (which triggers automated deployment via `deploy.yml`).
-
+* **Token Efficiency:** Keep reasoning concise, eliminate boilerplate, and use precise diff tools.
+* **Deterministic Execution:** Always run `./test.sh` locally to catch regressions before raising PRs.
