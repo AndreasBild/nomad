@@ -1,0 +1,22 @@
+# .agentignore - Context boundaries for Antigravity & AI agents
+
+# Version Control & IDE Metadata
+.git/
+.githooks/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
+
+# OS / Scratch artifacts
+.tmp/
+tmp/
+*.log
+
+# Large media source archives (if any)
+*.zip
+*.tar.gz
+*.iso
