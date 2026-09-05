@@ -3,7 +3,7 @@
  * Provides offline caching and instant page loads
  */
 
-const CACHE_NAME = 'nomad-v2';
+const CACHE_NAME = 'nomad-v3';
 const PRECACHE_ASSETS = [
     '/',
     '/index.html',

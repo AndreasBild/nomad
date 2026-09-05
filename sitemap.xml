@@ -6,7 +6,7 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://www.moderatorin-katrin-neumann.de/</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
         <image:image>
@@ -16,13 +16,13 @@
     </url>
     <url>
         <loc>https://www.moderatorin-katrin-neumann.de/datenschutz.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-05</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://www.moderatorin-katrin-neumann.de/impressum.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-05</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
