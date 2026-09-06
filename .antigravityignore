@@ -1,0 +1,33 @@
+# .antigravityignore - Context boundaries for Antigravity & AI agents
+
+# Version Control & IDE Metadata
+.git/
+.githooks/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+**/.DS_Store
+*.swp
+*.swo
+Thumbs.db
+
+# OS & Scratch Artifacts
+.tmp/
+tmp/
+scratch/
+*.log
+
+# Heavy Binary Media & Images (Prevents Token Waste)
+images/*.webp
+images/*.jpg
+images/*.png
+*.png
+*.ico
+*.zip
+*.tar.gz
+*.iso
+
+# Minified Vendor Libraries (Reference unminified or inspect targeted slices)
+css/bootstrap.min.css
+js/bootstrap.bundle.min.js

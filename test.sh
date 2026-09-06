@@ -18,4 +18,4 @@ else
 fi
 
 chmod +x scripts/validate.py
-"$PYTHON_BIN" scripts/validate.py
+"$PYTHON_BIN" scripts/validate.py "$@"

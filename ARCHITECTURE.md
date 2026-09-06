@@ -87,4 +87,28 @@ CSS is loaded in strict order to avoid specificity conflicts:
 - **Automated Pull Request Workflow:** Autonomous PR creation via GitHub CLI (`gh pr create`) against `master`, triggering CI quality checks prior to automated FTP deployment.
 - **Local Dev Server:** Shell script `./start-server.sh` works out-of-the-box on macOS and Linux without external dependencies.
 
+---
+
+## 6. Token Economics, Dual-Loop Validation & Model Tier Routing
+
+### 6.1 Dual-Loop Validation Architecture
+To optimize execution speed and prevent token waste during pair programming and agent execution, validation is divided into two decoupled loops:
+1. **Fast Inner Loop (`./test.sh --fast`):**
+   - Instantaneous (<50ms) execution.
+   - Audits XML sitemaps, robots.txt, JSON-LD schemas, internal anchors, referenced static assets, and HTML5 semantic standards.
+   - Skips local HTTP server spin-up and network requests.
+2. **Comprehensive Outer Gate (`./test.sh`):**
+   - Full pre-commit / pre-PR quality gate.
+   - In addition to all static checks, launches local TCP socket server and verifies live HTTP 200 responses across all 25 production endpoints.
+
+### 6.2 Context Boundaries & Ignore Rules
+- `.antigravityignore` and `.geminiignore` explicitly exclude heavy binary media (`images/*.webp`, `*.jpg`, `*.png`), IDE metadata, and logs from agent indexing contexts.
+- Strict token hygiene forbids reading large binary files or minified bundles (`bootstrap.min.css`, `bootstrap.bundle.min.js`) in full into conversation context.
+
+### 6.3 Dynamic Model Tier Routing Matrix
+Implementation plans declare a `## 🎯 Recommended Execution Model` choosing between:
+- **Tier 1 (Fast / Medium):** Routine HTML/CSS edits, sitemap timestamp updates, anchor fixes, fast inner-loop validation, and PR creation.
+- **Tier 2 (Deep Reasoning / Pro):** Major structural refactoring, Core Web Vitals deep diagnostics, JSON-LD Schema.org graph architectures, and Service Worker offline caching strategy (`sw.js`).
+
+
 
