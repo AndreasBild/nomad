@@ -18,12 +18,14 @@ Use this skill when you need to start the local web server, test changes, or ver
    python3 -m http.server 8000
    ```
 
-2. **Verify all endpoints and static assets:**
+2. **Verify changes during development (Fast Inner Loop):**
+   ```bash
+   ./test.sh --fast
+   ```
+
+3. **Verify all endpoints and static assets (Comprehensive Outer Gate):**
    ```bash
    ./test.sh
    ```
-   Or run the validator directly:
-   ```bash
-   python3 scripts/validate.py
-   ```
+
 

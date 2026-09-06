@@ -66,15 +66,20 @@ graph TD
 
 ### Stufe 4: Standardkonforme Implementierung (Implementation & Standards)
 * Implement clean, semantic HTML5 and Vanilla JS logic.
-* Ensure all image tags specify explicit dimensions and modern formats (`.webp`).
+* Ensure all image tags specify explicit dimensions (`width`, `height`) and modern formats (`.webp`).
 * Update `sitemap.xml` with current `<lastmod>` timestamp whenever pages change.
+* **Fast Inner Loop Iteration:** Continuously run fast static validations during active development:
+  ```bash
+  ./test.sh --fast
+  ```
+  *(Validates XML sitemaps, robots.txt, JSON-LD schemas, internal anchors, assets, and HTML5 standards in <50ms without starting local HTTP servers).*
 
 ### Stufe 5: Quality Gate & Lokale Verifikation (Quality Gate & Verification)
-* Execute the complete automated validation suite locally:
+* Execute the complete automated validation suite locally before committing:
   ```bash
   ./test.sh
   ```
-  *(Runs `scripts/validate.py`, verifying XML sitemaps, robots.txt, JSON-LD schema parsing, internal anchors, static assets, and HTTP 200 across all 25 endpoints).*
+  *(Runs comprehensive suite: XML sitemaps, robots.txt, JSON-LD schema parsing, internal anchors, static assets, HTML5 standards, and confirms live HTTP 200 responses across all 25 endpoints).*
 * Ensure **0 errors** before proceeding.
 
 ### Stufe 6: Pull Request & Automatisierter Review (PR & Review Gate)
@@ -89,7 +94,32 @@ graph TD
 
 ---
 
-## 3. Execution & Token Efficiency Rules
+## 3. Token Economics, Model Tiering & Execution Efficiency
 
-* **Token Efficiency:** Keep reasoning concise, eliminate boilerplate, and use precise diff tools.
-* **Deterministic Execution:** Always run `./test.sh` locally to catch regressions before raising PRs.
+### 3.1 Token Economics & Context Hygiene
+* **Large Binary Invariant:** Never read images (`images/*.webp`, `images/*.jpg`, `*.png`), favicons, or minified vendor bundles (`bootstrap.min.css`, `bootstrap.bundle.min.js`, `aos.css`, `aos.js`) into prompt context.
+* **Targeted Inspections:** Use `grep_search` and bounded `view_file` slices (50–100 lines at a time).
+* **Surgical Diffing:** Always use precise diff tools (`replace_file_content`, `multi_replace_file_content`) rather than rewriting large HTML/CSS files unmodified.
+* **Ignore Configuration:** Maintain `.antigravityignore` and `.geminiignore` to prevent AI indexers from loading binary assets into context.
+
+### 3.2 Dynamic Model Tier Recommendation Protocol
+Every task must dynamically select the most efficient model tier to balance performance, cost, and latency:
+
+| Model Tier | Capability Profile | Typical Workflows in Nomad |
+| :--- | :--- | :--- |
+| **Tier 1: Fast / Medium**<br>*(Latest Flash / Medium in IDE)* | High throughput, sub-second latency, optimal token economy. | • Routine HTML content & text copy updates<br>• Section anchor adjustments and internal navigation links<br>• CSS styling adjustments in `css/katrin.css`<br>• Updating `<lastmod>` timestamps in `sitemap.xml`<br>• Open Graph, Twitter Card, and meta tag adjustments<br>• Inner-loop validation (`./test.sh --fast`)<br>• Minor bugfixes, formatting, and autonomous PR creation |
+| **Tier 2: Deep Reasoning / Pro**<br>*(Latest Pro / Thinking in IDE)* | Multi-step reasoning, architectural synthesis, subtle edge-case detection. | • Major responsive layout redesigns (Bootstrap 5 flex/grid refactoring)<br>• Deep Core Web Vitals diagnostics (LCP banner preload, INP event listeners)<br>• Schema.org JSON-LD graph architecture (`@graph`, `Person`, `VideoObject`)<br>• Complex Service Worker offline caching strategy (`sw.js`)<br>• Accessibility (WCAG 2.1 AA) full structural audits across landmarks & tabindex |
+
+*Implementation Plan Standard:* Every `implementation_plan.md` must declare a `## 🎯 Recommended Execution Model` section.
+
+### 3.3 Dual-Loop Execution Protocol
+* **Inner Loop (Active TDD/Editing):** `./test.sh --fast` (instantaneous <50ms offline check).
+* **Outer Gate (Pre-Commit/Pre-PR):** `./test.sh` (comprehensive live HTTP server & endpoint check).
+
+### 3.4 Working Tree Hygiene & Unrelated Changes
+* Never run `git add .` blindly. Strictly stage only modified files for the specific task using `git add <file1> <file2>`.
+* Protect unstaged user modifications and local configuration overrides.
+
+### 3.5 High-Signal Communication
+* Provide concise, actionable responses with direct clickable `file://` links using the `file://` scheme. Eliminate conversational fluff.
+

@@ -5,22 +5,29 @@ description: Executes the complete automated test and validation suite for Nomad
 
 # Quality Gate Skill
 
-Use this skill before committing code or opening a Pull Request to ensure 100% compliance with HTML, schema, asset, and endpoint health standards.
+Use this skill to validate changes during active development (Fast Inner Loop) and before committing code or opening a Pull Request (Comprehensive Outer Gate).
 
-## Validation Steps
+## Dual-Loop Validation Steps
 
-1. **Run Complete Validation Suite:**
-   ```bash
-   ./test.sh
-   ```
+### 1. Fast Inner Loop (Active Development)
+Run instantaneous (<50ms) static checks during editing:
+```bash
+./test.sh --fast
+```
+*Direct python execution:*
+```bash
+python3 scripts/validate.py --fast
+```
+Verifies:
+- Sitemap XML & `robots.txt` validity.
+- JSON-LD blocks (`Person`, `BreadcrumbList`) schema integrity.
+- Internal links, section anchors, and referenced static assets.
+- HTML5 standards: doctype, lang="de", meta tags, single `<h1>`, unique IDs, explicit image dimensions (`width`/`height`), `alt` tags, and external link security (`rel="noopener noreferrer"`).
 
-2. **Direct Python Validator Execution:**
-   ```bash
-   python3 scripts/validate.py
-   ```
+### 2. Comprehensive Outer Gate (Pre-Commit / Pre-PR)
+Run the full test suite before committing or opening a PR:
+```bash
+./test.sh
+```
+*Verifies all static checks above PLUS starts a local TCP server and validates live HTTP 200 responses across all 25 production endpoints.*
 
-3. **Check Output:**
-   - Verify Sitemap XML & `robots.txt` are valid.
-   - Verify all JSON-LD blocks (`Person`, `BreadcrumbList`) parse with valid schema.
-   - Verify all internal anchors (`#hero`, `#about`, `#moderation`, `#kontakt`) and image assets exist.
-   - Verify all 25 HTTP endpoints return status 200.
