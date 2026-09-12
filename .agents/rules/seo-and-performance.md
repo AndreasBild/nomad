@@ -6,7 +6,10 @@ trigger: always_on
 # SEO, Performance & Core Web Vitals Rules
 
 1. **Core Web Vitals:**
-   - **LCP (Largest Contentful Paint):** Preload or set `fetchpriority="high"` and `decoding="async"` on hero banner images (`images/Katrin-Neumann-Moderatorin.webp`). Avoid render-blocking scripts (load with `defer`).
+   - **LCP (Largest Contentful Paint):**
+     - Desktop banner: `images/Katrin-Neumann-Moderatorin.webp` (1920x1083).
+     - Mobile banner: `images/Katrin-Neumann-Moderatorin-768.webp` (768x433).
+     - Preload or set `fetchpriority="high"` and `decoding="async"` on hero banner images. Avoid render-blocking scripts (load with `defer`).
    - **CLS (Cumulative Layout Shift):** Always define explicit `width` and `height` attributes on images or use CSS aspect-ratio wrappers.
    - **INP / FID:** Keep JavaScript minimal, event listeners passive, and avoid synchronous heavy execution during load.
 
