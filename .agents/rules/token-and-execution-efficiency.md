@@ -48,6 +48,11 @@ Execute only after inner-loop checks pass and task implementation is finalized:
 - Limit command outputs using `head`, `grep`, or targeted flags.
 - Do not poll running tasks or background timers in tight loops. Rely on reactive wakeup.
 
-## 6. High-Signal Communication
+## 6. Subagent Boundary Isolation
+- **Delegate Heavy Diagnostics:** Offload verbose, exploratory, or repetitive tasks (e.g., extensive test/build runs, large raw log inspections, deep dependency analysis) to dedicated subagents.
+- **Executive Memo Protocol:** Subagents must synthesize their findings and return concise, actionable executive memos (summary, root cause, verified fix) to the primary orchestrator rather than dumping raw command traces into the main conversation context.
+- **Context Preservation:** Isolating noisy subagent trajectories preserves the main orchestrator's token budget and keeps reasoning focused on architectural decisions and user deliverables.
+
+## 7. High-Signal Communication
 - Eliminate conversational pleasantries, repetitive apologies, and boilerplate explanations.
 - Always provide concise, actionable markdown with direct clickable `file://` links using the `file://` scheme.
