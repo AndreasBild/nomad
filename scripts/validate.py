@@ -171,6 +171,8 @@ def validate_html_standards():
         assert re.search(r'<title>[^<]+</title>', content, re.IGNORECASE), f"{fpath} missing or empty <title>"
         assert re.search(r'<meta\s+name=["\']description["\']\s+content=["\'][^"\']+["\']', content, re.IGNORECASE), f"{fpath} missing meta description"
         assert re.search(r'<link\s+rel=["\']canonical["\']\s+href=["\'][^"\']+["\']', content, re.IGNORECASE), f"{fpath} missing canonical link"
+        assert re.search(r'<meta\s+name=["\']date-created["\']\s+content=["\'][^"\']+["\']', content, re.IGNORECASE), f"{fpath} missing date-created meta tag"
+        assert re.search(r'<meta\s+name=["\']build-date["\']\s+content=["\'][^"\']+["\']', content, re.IGNORECASE), f"{fpath} missing build-date meta tag"
 
         # 3. No empty container tags
         empty_tags = re.findall(r'<(strong|b|span|a)>\s*</\1>', content)
