@@ -42,5 +42,5 @@ Die Website wird bei jedem Push/Merge auf den `master`-Branch automatisch per Gi
 - `FTP_SERVER`: FTP-Serveradresse / Hostname (z. B. `ftp.moderatorin-katrin-neumann.de` oder Server-IP)
 - `FTP_USERNAME`: FTP-Benutzername
 - `FTP_PASSWORD`: FTP-Passwort
-- `FTP_SERVER_DIR`: *(Optional)* Zielordner auf dem Webspace (Standard: `/httpdocs/`)
+- `FTP_SERVER_DIR`: *(Optional)* Zielordner auf dem Webspace (Standard: `webpage/`)
 
