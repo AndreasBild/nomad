@@ -2,7 +2,7 @@ name: Nomad CI & Validation
 
 on:
   push:
-    branches: [ master, "feature/**", "fix/**" ]
+    branches: [ master, "feature/**", "fix/**", "chore/**" ]
   pull_request:
     branches: [ master ]
 
