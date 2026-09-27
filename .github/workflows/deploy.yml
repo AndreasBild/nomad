@@ -65,3 +65,9 @@ jobs:
             GEMINI.md
             .idea/**
             *.iml
+            .agentignore
+            .antigravityignore
+            .geminiignore
+            .editorconfig
+            .junie/**
+            **/.DS_Store
