@@ -42,7 +42,7 @@ jobs:
           fetch-depth: 2 # Required by FTP-Deploy-Action to sync only modified files
 
       - name: 📂 Transfer files via FTP / FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
