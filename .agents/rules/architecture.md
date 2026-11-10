@@ -1,12 +1,12 @@
 ---
-description: Architectural guidelines and technology stack constraints for the Nomad project
+description: Core architectural constraints, Vanilla JS/CSS stack hierarchy, and file organization for the Nomad project.
 trigger: always_on
 ---
 
 # Architecture & Code Rules
 
 1. **No External Frameworks / Vanilla JavaScript Only:**
-   - Strictly **NO jQuery**, React, Vue, or heavy dependencies.
+   - Strictly **NO jQuery**, React, Vue, or heavy runtime dependencies.
    - All interactive logic resides in `js/custom.js` and `sw.js` written in modern Vanilla JavaScript (ES6+).
    - Leverage native Browser APIs (DOM API, `IntersectionObserver`, `fetch`, Bootstrap 5 JS components).
 
@@ -19,6 +19,5 @@ trigger: always_on
 
 3. **Asset Organization:**
    - Images in `/images/` (prefer modern `.webp`).
-   - Stylesheets in `/css/`.
-   - Scripts in `/js/`.
-   - SEO and Crawler files (`robots.txt`, `sitemap.xml`, `sitemap.xsl`, `llms.txt`, `llms-full.txt`, `site.webmanifest`) strictly in the root directory.
+   - Stylesheets in `/css/`, scripts in `/js/`.
+   - SEO and crawler files (`robots.txt`, `sitemap.xml`, `sitemap.xsl`, `llms.txt`, `llms-full.txt`, `site.webmanifest`) strictly in the root directory.

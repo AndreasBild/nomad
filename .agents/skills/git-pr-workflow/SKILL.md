@@ -1,75 +1,35 @@
 ---
 name: git-pr-workflow
-description: End-to-end 6-stage development lifecycle, selective git staging, and automated PR handoff via GitHub CLI.
+description: >-
+  Use this skill when executing the 6-stage development lifecycle, branching, staging files selectively,
+  committing changes, pushing to origin, and opening a Pull Request via GitHub CLI (gh pr create).
 ---
 
 # Git & PR Workflow Skill
 
-Follow this workflow for all code, content, and configuration modifications.
-
 ## 6-Stage Development Lifecycle
 
-```mermaid
-graph TD
-    S1[1. Analysis & Context] --> S2[2. Architecture & Design]
-    S2 --> S3[3. Branch Isolation]
-    S3 --> S4[4. Implementation & Standards]
-    S4 --> S5[5. Quality Gate & Local Validation]
-    S5 --> S6[6. Automated PR & Review Gate]
-```
-
----
-
-### Stage 1: Analysis & Context
-- Ingest DOM structure, CSS inheritance, JSON-LD schemas, and existing assets.
-- Identify affected navigation targets (`#hero`, `#about`, `#moderation`, `#kontakt`), canonical tags, or legal subpages.
-
-### Stage 2: Architecture & Design
-- Verify changes adhere strictly to pure Vanilla JS (ES6+) and Bootstrap 5 without external dependencies.
-- Ensure CSS additions reside exclusively in `css/katrin.css` respecting cascade specificity.
-- Plan SEO, Open Graph, and Schema.org metadata updates.
-
-### Stage 3: Branch Isolation
-- **Never commit directly to `master`.**
-- Create and switch to a descriptive branch from latest `master`:
-  - `feature/<short-description>`: New sections, features, or content.
-  - `fix/<short-description>`: Bugfixes, broken anchors, or layout adjustments.
-  - `chore/<short-description>`: Maintenance, CI/CD, agent configs, or dependencies.
-  ```bash
-  git checkout -b <branch-name>
-  ```
-
-### Stage 4: Implementation & Standards
-- Implement clean, semantic HTML5 and Vanilla JS logic.
-- Ensure all image tags specify explicit dimensions (`width`, `height`) and modern formats (`.webp`).
-- Update `sitemap.xml` with current `<lastmod>` timestamp whenever pages change.
-- **Fast Inner Loop:** Validate continuously during active editing:
-  ```bash
-  ./test.sh --fast
-  ```
-
-### Stage 5: Quality Gate & Local Validation
-- Run the full regression test suite before staging changes:
-  ```bash
-  ./test.sh
-  ```
-- Confirm **0 errors** across all static checks and 25 live HTTP endpoints.
-
-### Stage 6: Automated PR & Review Gate
-1. **Selective Git Staging:** Never run `git add .` blindly. Stage only modified files:
+1. **Analysis & Context:** Inspect target sections (`#hero`, `#about`, `#moderation`, `#kontakt`), CSS cascade in `css/katrin.css`, or metadata using `grep` and bounded `read_file` slices.
+2. **Architecture & Design:** Ensure pure Vanilla JS (`js/custom.js`, `sw.js`) and Bootstrap 5 + `css/katrin.css` overrides.
+3. **Branch Isolation:** Create a descriptive branch from `master` (`feature/<slug>`, `fix/<slug>`, or `chore/<slug>`):
+   ```bash
+   git checkout -b <branch-name>
+   ```
+4. **Implementation & Inner Loop:** Apply surgical `edit_file` changes, update `sitemap.xml` `<lastmod>` if pages change, and validate continuously:
+   ```bash
+   ./test.sh --fast
+   ```
+5. **Quality Gate (Outer Loop):** Run the full test suite and verify 0 errors across all 25 HTTP endpoints:
+   ```bash
+   ./test.sh
+   ```
+6. **Selective Staging, Commit & Automated PR:**
    ```bash
    git add <file1> <file2>
-   ```
-2. **Imperative Commit Message:**
-   ```bash
-   git commit -m "<type>: <concise description>"
-   ```
-   *Types: `feat:`, `fix:`, `chore:`, `docs:`.*
-3. **Push to Origin:**
-   ```bash
+   git commit -m "<type>: <concise imperative summary>"
    git push -u origin <branch-name>
    ```
-4. **Create Pull Request via GitHub CLI:**
+   Open the Pull Request via GitHub CLI following `.github/pull_request_template.md`:
    ```bash
    gh pr create --base master --head <branch-name> --title "<title>" --body "## Summary of Changes
    - <bullet point changes>
@@ -82,4 +42,3 @@ graph TD
    - [x] **Accessibility (a11y):** ARIA and external link attributes confirmed.
    - [x] **Automated Test Run:** Local validation executed and passed (\`./test.sh\`)."
    ```
-5. CI (`ci.yml`) runs automated validation on the PR. Merging to `master` triggers production deployment (`deploy.yml`).

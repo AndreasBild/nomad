@@ -1,6 +1,6 @@
 ---
-description: Performance optimization, Core Web Vitals, and SEO guidelines for the Nomad project
-trigger: always_on
+description: Apply when modifying or auditing Core Web Vitals (LCP, CLS, INP), hero images, SEO meta tags, Open Graph/Twitter cards, sitemap.xml, robots.txt, llms.txt, or Schema.org JSON-LD structured data.
+trigger: model_decision
 ---
 
 # SEO, Performance & Core Web Vitals Rules
@@ -9,14 +9,14 @@ trigger: always_on
    - **LCP (Largest Contentful Paint):**
      - Desktop banner: `images/Katrin-Neumann-Moderatorin.webp` (1920x1083).
      - Mobile banner: `images/Katrin-Neumann-Moderatorin-768.webp` (768x433).
-     - Preload or set `fetchpriority="high"` and `decoding="async"` on hero banner images. Avoid render-blocking scripts (load with `defer`).
-   - **CLS (Cumulative Layout Shift):** Always define explicit `width` and `height` attributes on images or use CSS aspect-ratio wrappers.
-   - **INP / FID:** Keep JavaScript minimal, event listeners passive, and avoid synchronous heavy execution during load.
+     - Set `fetchpriority="high"` and `decoding="async"` on LCP hero images; use `loading="lazy"` and `decoding="async"` on below-the-fold images. Load scripts with `defer`.
+   - **CLS (Cumulative Layout Shift):** Always define explicit `width` and `height` attributes on images or CSS `aspect-ratio` containers.
+   - **INP (Interaction to Next Paint):** Keep JavaScript minimal, event listeners passive, and avoid synchronous main-thread blocking.
 
 2. **SEO & Metadata Integrity:**
    - Maintain canonical tags pointing to exact URLs (`https://www.moderatorin-katrin-neumann.de/...`).
-   - Keep Open Graph and Twitter Card tags in sync with page title and description.
-   - When new pages are added or URLs are updated, update `sitemap.xml` with current `<lastmod>` timestamp.
+   - Keep Open Graph (`og:*`) and Twitter Card (`twitter:*`) tags synchronized with page `<title>` and `<meta name="description">`.
+   - Update `sitemap.xml` `<lastmod>` whenever page content or URLs change.
 
 3. **Structured Data:**
-   - Maintain valid Schema.org JSON-LD (`Person` graph on `index.html`, `BreadcrumbList` on legal pages).
+   - Maintain valid Schema.org JSON-LD (`@graph` with `Person` on `index.html`, `BreadcrumbList` on legal subpages).
