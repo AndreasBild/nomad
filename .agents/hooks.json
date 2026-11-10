@@ -1,0 +1,17 @@
+{
+  "git-hygiene-guard": {
+    "enabled": true,
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ./hooks/pre_command.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

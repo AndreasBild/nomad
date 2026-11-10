@@ -192,6 +192,58 @@ def validate_html_standards():
 
     print(f"✓ All {len(html_files)} HTML pages conform strictly to HTML5, WCAG AA, and Core Web Vitals standards.")
 
+def validate_agent_config():
+    print_header("5. Validating Agent Kernel, Rules, Skills & Hooks")
+
+    # 1. Root kernel line budget
+    for kernel_file in ["AGENTS.md", "GEMINI.md"]:
+        kpath = os.path.join(WORKSPACE_ROOT, kernel_file)
+        assert os.path.isfile(kpath), f"{kernel_file} is missing!"
+        with open(kpath, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        assert len(lines) <= 35, f"{kernel_file} exceeds 35-line kernel budget ({len(lines)} lines)!"
+    print("✓ AGENTS.md and GEMINI.md are within the 35-line root kernel budget.")
+
+    # 2. Rules frontmatter check
+    rule_files = sorted(glob.glob(os.path.join(".agents", "rules", "*.md")))
+    assert len(rule_files) > 0, "No .agents/rules/*.md files found!"
+    for rpath in rule_files:
+        with open(rpath, "r", encoding="utf-8") as f:
+            rcontent = f.read()
+        assert rcontent.startswith("---\n"), f"{rpath} is missing YAML frontmatter!"
+        assert re.search(r"^description:\s*\S+", rcontent, re.MULTILINE), f"{rpath} missing frontmatter description!"
+        assert re.search(r"^trigger:\s*(always_on|model_decision)", rcontent, re.MULTILINE), f"{rpath} missing valid trigger!"
+    print(f"✓ All {len(rule_files)} workspace rules have valid YAML frontmatter and triggers.")
+
+    # 3. Skills frontmatter & router parity check
+    skill_files = sorted(glob.glob(os.path.join(".agents", "skills", "*", "SKILL.md")))
+    with open(os.path.join(WORKSPACE_ROOT, "AGENTS.md"), "r", encoding="utf-8") as f:
+        agents_md = f.read()
+    for spath in skill_files:
+        skill_dir = os.path.basename(os.path.dirname(spath))
+        with open(spath, "r", encoding="utf-8") as f:
+            scontent = f.read()
+        assert scontent.startswith("---\n"), f"{spath} is missing YAML frontmatter!"
+        assert re.search(rf"^name:\s*{re.escape(skill_dir)}\b", scontent, re.MULTILINE), f"{spath} frontmatter name does not match directory '{skill_dir}'!"
+        assert f".agents/skills/{skill_dir}/SKILL.md" in agents_md, f"Skill '{skill_dir}' is missing from AGENTS.md Progressive Skill Router!"
+    print(f"✓ All {len(skill_files)} skills have valid frontmatter and are registered in AGENTS.md.")
+
+    # 4. Hooks & ignore parity check
+    hooks_path = os.path.join(WORKSPACE_ROOT, ".agents", "hooks.json")
+    assert os.path.isfile(hooks_path), ".agents/hooks.json is missing!"
+    with open(hooks_path, "r", encoding="utf-8") as f:
+        hooks_data = json.load(f)
+    assert "git-hygiene-guard" in hooks_data, ".agents/hooks.json missing git-hygiene-guard!"
+
+    ignore_contents = []
+    for ig in [".antigravityignore", ".geminiignore", ".agentignore"]:
+        ig_path = os.path.join(WORKSPACE_ROOT, ig)
+        assert os.path.isfile(ig_path), f"{ig} is missing!"
+        with open(ig_path, "r", encoding="utf-8") as f:
+            ignore_contents.append(f.read().strip())
+    assert ignore_contents[0] == ignore_contents[1] == ignore_contents[2], "Ignore files (.antigravityignore, .geminiignore, .agentignore) are out of sync!"
+    print("✓ .agents/hooks.json and ignore files (.antigravityignore, .geminiignore, .agentignore) verified.")
+
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, format, *args):
         pass
@@ -202,7 +254,7 @@ class QuietServer(socketserver.TCPServer):
         pass
 
 def validate_http_endpoints():
-    print_header("5. Validating HTTP 200 Endpoints on Local Server")
+    print_header("6. Validating HTTP 200 Endpoints on Local Server")
     
     server = None
     port = 8000
@@ -249,9 +301,10 @@ def validate_http_endpoints():
             f"http://127.0.0.1:{port}/apple-touch-icon.png"
         ]
 
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
         for u in urls:
             req = urllib.request.Request(u, headers={'User-Agent': 'Nomad-Validation-Suite/1.0'})
-            with urllib.request.urlopen(req) as resp:
+            with opener.open(req) as resp:
                 assert resp.status == 200, f"Endpoint {u} returned status {resp.status}"
                 resp.read() # Consume full stream
                 path_part = u.split(f":{port}")[1]
@@ -269,6 +322,7 @@ def main():
         validate_json_ld()
         validate_links_and_assets()
         validate_html_standards()
+        validate_agent_config()
         if not fast_mode:
             validate_http_endpoints()
         else:

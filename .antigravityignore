@@ -1,4 +1,4 @@
-# .antigravityignore - Context boundaries for Antigravity & AI agents
+# Context boundaries for Antigravity, Gemini & AI agents
 
 # Version Control & IDE Metadata
 .git/
@@ -28,6 +28,8 @@ images/*.png
 *.tar.gz
 *.iso
 
-# Minified Vendor Libraries (Reference unminified or inspect targeted slices)
+# Minified Vendor Libraries (Inspect custom files instead)
 css/bootstrap.min.css
 js/bootstrap.bundle.min.js
+css/aos.css
+js/aos.js

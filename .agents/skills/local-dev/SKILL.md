@@ -1,31 +1,20 @@
 ---
 name: local-dev
-description: Starts the local development server and runs health and asset validation tests for Nomad.
+description: >-
+  Use this skill when starting the local development HTTP server (./start-server.sh)
+  to preview the site in a browser or inspect live local pages.
 ---
 
-# Local Dev & Testing Skill
-
-Use this skill when you need to start the local web server, test changes, or verify endpoint accessibility.
+# Local Dev Server Skill
 
 ## Steps
 
-1. **Start the local server:**
+1. **Start the local HTTP server (default port 8000):**
    ```bash
    ./start-server.sh 8000
    ```
-   Or in background with python:
-   ```bash
-   python3 -m http.server 8000
-   ```
+   *(Uses `python3 -m http.server` to serve the static root at `http://localhost:8000`.)*
 
-2. **Verify changes during development (Fast Inner Loop):**
-   ```bash
-   ./test.sh --fast
-   ```
-
-3. **Verify all endpoints and static assets (Comprehensive Outer Gate):**
-   ```bash
-   ./test.sh
-   ```
-
-
+2. **Browser Preview / Inspection:**
+   - Once the server is running in background/daemon mode, delegate live UI or DevTools inspection of `http://localhost:8000` to the `browser` subagent.
+   - For automated endpoint and HTML5 validation without manual preview, use the `test-suite` skill (`./test.sh --fast` or `./test.sh`).
